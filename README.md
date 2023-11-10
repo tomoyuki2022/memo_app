@@ -9,11 +9,11 @@ Bundler(`gem install bundler`でインストール）
 # インストール
 1.リポジトリをcloneしてください。
 ```
-git clone https://github.com/アカウント名/memo-app.git
+git clone https://github.com/アカウント名/memo_app.git
 ```
-2.memo-appディレクトリに移動してください。
+2.memo_appディレクトリに移動してください。
 ```
-cd memo-app
+cd memo_app
 ```
 3.bundleでgemをインストールしてください。
 ```
