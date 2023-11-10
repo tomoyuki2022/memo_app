@@ -1,0 +1,7 @@
+<h1>メモアプリ</h1>
+<form method='post' action='/edit_memos/<%= @finded_memo['id'] %>'>
+  <input type='hidden' name='_method' value='patch'>
+  <p><input class='input_title' type='text' name='title' value='<%= @finded_memo['title'] %>'></p>
+  <p><textarea class='input_content' name='content'><%= @finded_memo['content'] %></textarea></p>
+  <p><button type='submit'>変更</button></p>
+</form>
