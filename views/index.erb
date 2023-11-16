@@ -1,7 +1,7 @@
 <h1>メモアプリ</h1>
 <ul>
   <% @json_data.each do |memo_data| %>
-    <li><a href='/memos/<%= memo_data['id'] %>'><%= memo_data['title'] %></a></li>
+    <li><a href='/memos/<%= memo_data['id'] %>'><%= h(memo_data['title']) %></a></li>
   <% end %>
 </ul>
 <div class='top_button'>
