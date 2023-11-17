@@ -1,10 +1,10 @@
 h1 {
-	color: #d2b48c;
+  color: #d2b48c;
 	font-size: 40px;
 }
 
-body {
-	margin: auto;
+body {		
+	margin: auto;		
 	background: #fffaf0;
 	max-width: fit-content;
 }
@@ -20,7 +20,7 @@ ul li {
 	font-size: 30px;
 	background-color: #faf0e6;
 	border-radius: 5px;
-  border: solid;
+	border: solid;
 	border-color: #d2b48c;
 }
 
