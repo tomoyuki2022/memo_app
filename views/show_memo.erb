@@ -3,7 +3,7 @@
 <p class='show_content'><%= h(@found_memo['content']).gsub(/\n/, '<br>') %></p>
 
 <div class='button_edit_delete'>
-  <a href='/edit_memos/<%= @found_memo['id'] %>' class='edit_button'><button>変更</button></a>
+  <a href='/memos/<%= @found_memo['id'] %>/edit' class='edit_button'><button>変更</button></a>
   <form method='post' action='/memos/<%= @found_memo['id'] %>'>
     <input type='hidden' name='_method' value='delete'>
     <button type='submit'>削除</button>
