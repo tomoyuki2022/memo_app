@@ -1,68 +1,66 @@
 h1 {
   color: #d2b48c;
-	font-size: 40px;
+  font-size: 40px;
 }
 
 body {		
-	margin: auto;		
-	background: #fffaf0;
-	max-width: fit-content;
+  margin: auto;		
+  background: #fffaf0;
+  max-width: fit-content;
 }
 
-
 ul li {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 .input_title {
-	width: 400px;
-	height: 50px;
-	font-size: 30px;
-	background-color: #faf0e6;
-	border-radius: 5px;
-	border: solid;
-	border-color: #d2b48c;
+  width: 400px;
+  height: 50px;
+  font-size: 30px;
+  background-color: #faf0e6;
+  border-radius: 5px;
+  border: solid;
+  border-color: #d2b48c;
 }
 
 .input_content {
-	width: 400px;
-	height: 400px;
-	font-size: 20px;
-	background-color: #faf0e6;
-	border-radius: 5px;
-	border: solid;
-	border-color: #d2b48c;
+  width: 400px;
+  height: 400px;
+  font-size: 20px;
+  background-color: #faf0e6;
+  border-radius: 5px;
+  border: solid;
+  border-color: #d2b48c;
 }
 
 .show_title {
-	font-size: 30px;
+  font-size: 30px;
 }
 .show_content {
-	font-size: 20px;
-	margin-bottom: 80px;
+  font-size: 20px;
+  margin-bottom: 80px;
 }
 
 .edit_button {
-	margin-right: 60px;
+  margin-right: 60px;
 }
 
 .button_edit_delete {
-	display: flex;
+  display: flex;
 }
 
-
 button {
-	width:100px;
-	height: 40px;
-	background-color: #ffdead;
-	border-radius: 10px;
-	border: solid;
-	border-color: #deb887;
-	color: #8b4513;
-	font-size: 18px;
+  width:100px;
+  height: 40px;
+  background-color: #ffdead;
+  border-radius: 10px;
+  border: solid;
+  border-color: #deb887;
+  color: #8b4513;
+  font-size: 18px;
 }
 
 button:hover {
-	background-color: #ffe4c4;
-	cursor: pointer;
+  background-color: #ffe4c4;
+  cursor: pointer;
 }
