@@ -30,12 +30,12 @@ helpers do
   end
 end
 
-get '/' do
+get '/memos' do
   @json_data = read_json_file
   erb :index
 end
 
-get '/memos' do
+get '/new' do
   erb :new_memo
 end
 
@@ -53,12 +53,12 @@ post '/memos' do
   new_memo = { 'id' => memo_id, 'title' => params[:title], 'content' => params[:content] }
   json_data << new_memo
   write_json_file(json_data)
-  redirect '/'
+  redirect '/memos'
 end
 
-get '/edit_memos/:edit_memo_id' do
+get '/memos/:memo_id/edit' do
   json_data = read_json_file
-  memo_id = params[:edit_memo_id].to_i
+  memo_id = params[:memo_id].to_i
   @found_memo = json_data.find { |data| data['id'] == memo_id }
   pass unless @found_memo
   erb :edit_memo
@@ -71,7 +71,7 @@ patch '/memos/:memo_id' do
   found_memo['title'] = params[:title]
   found_memo['content'] = params[:content]
   write_json_file(json_data)
-  redirect '/'
+  redirect '/memos'
 end
 
 delete '/memos/:memo_id' do
@@ -79,5 +79,5 @@ delete '/memos/:memo_id' do
   json_data = read_json_file
   json_data.delete_if { |data| data['id'] == memo_id }
   write_json_file(json_data)
-  redirect '/'
+  redirect '/memos'
 end
