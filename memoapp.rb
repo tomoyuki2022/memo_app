@@ -16,7 +16,7 @@ end
 
 def write_json_file(file_data)
   File.open('public/memos.json', 'w') do |file|
-    file.write(JSON.pretty_generate(file_data))
+    file.write(JSON.generate(file_data))
   end
 end
 
@@ -35,7 +35,7 @@ get '/memos' do
   erb :index
 end
 
-get '/new' do
+get '/memos/new' do
   erb :new_memo
 end
 
