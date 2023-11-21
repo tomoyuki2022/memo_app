@@ -8,7 +8,7 @@ def read_json_file
   FileTest.zero?('public/memos.json') ? [] : JSON.parse(File.read('public/memos.json'))
 end
 
-def col_memo_id
+def new_memo_id
   json_data = read_json_file
   memo_id = json_data.empty? ? 0 : json_data.last['id']
   memo_id + 1
