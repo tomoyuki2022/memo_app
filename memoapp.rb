@@ -48,7 +48,7 @@ get '/memos/:memo_id' do
 end
 
 post '/memos' do
-  memo_id = col_memo_id
+  memo_id = new_memo_id
   json_data = read_json_file
   new_memo = { 'id' => memo_id, 'title' => params[:title], 'content' => params[:content] }
   json_data << new_memo
