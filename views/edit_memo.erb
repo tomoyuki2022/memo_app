@@ -1,7 +1,9 @@
 <h1>メモアプリ</h1>
-<form method='post' action='/memos/<%= @found_memo['id'] %>'>
+<% @memos.each do |memo| %>
+<form method='post' action='/memos/<%= memo['memo_id'] %>'>
   <input type='hidden' name='_method' value='patch'>
-  <p><input class='input_title' type='text' name='title' placeholder='title' value='<%= h(@found_memo['title']) %>' required='required'></p>
-  <p><textarea class='input_content' name='content'><%= h(@found_memo['content']) %></textarea></p>
+  <p><input class='input_title' type='text' name='title' placeholder='title' value='<%= h(memo['title']) %>' required='required'></p>
+  <p><textarea class='input_content' name='content'><%= h(memo['content']) %></textarea></p>
   <p><button type='submit'>変更</button></p>
 </form>
+<% end %>

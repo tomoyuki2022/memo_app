@@ -1,11 +1,12 @@
 <h1>メモアプリ</h1>
-<p class='show_title'><%= h(@found_memo['title']) %></P>
-<p class='show_content'><%= h(@found_memo['content']).gsub(/\n/, '<br>') %></p>
-
+<% @memos.each do |memo| %>
+<p class='show_title'><%= h(memo['title']) %></P>
+<p class='show_content'><%= h(memo['content']).gsub(/\n/, '<br>') %></p>
 <div class='button_edit_delete'>
-  <a href='/memos/<%= @found_memo['id'] %>/edit' class='edit_button'><button>変更</button></a>
-  <form method='post' action='/memos/<%= @found_memo['id'] %>'>
+  <a href='/memos/<%= memo['memo_id'] %>/edit' class='edit_button'><button>変更</button></a>
+  <form method='post' action='/memos/<%= memo['memo_id'] %>'>
     <input type='hidden' name='_method' value='delete'>
     <button type='submit'>削除</button>
   </form>
 </div>
+<% end %>
