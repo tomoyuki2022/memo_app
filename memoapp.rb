@@ -1,23 +1,16 @@
 # frozen_string_literal: true
 
 require 'sinatra'
-require 'json'
 require 'sinatra/reloader'
+require 'pg'
+require 'securerandom'
 
-def read_json_file
-  FileTest.zero?('public/memos.json') ? [] : JSON.parse(File.read('public/memos.json'))
+def connection
+  PG.connect(dbname: 'memo_app')
 end
 
 def new_memo_id
-  json_data = read_json_file
-  memo_id = json_data.empty? ? 0 : json_data.last['id']
-  memo_id + 1
-end
-
-def write_json_file(file_data)
-  File.open('public/memos.json', 'w') do |file|
-    file.write(JSON.generate(file_data))
-  end
+  SecureRandom.uuid
 end
 
 not_found do
@@ -31,7 +24,7 @@ helpers do
 end
 
 get '/memos' do
-  @json_data = read_json_file
+  @memos = connection.exec('select * from memos;')
   erb :index
 end
 
@@ -40,44 +33,32 @@ get '/memos/new' do
 end
 
 get '/memos/:memo_id' do
-  json_data = read_json_file
-  memo_id = params[:memo_id].to_i
-  @found_memo = json_data.find { |data| data['id'] == memo_id }
-  pass unless @found_memo
+  memo_id = params[:memo_id]
+  @memos = connection.exec_params('select * from memos where memo_id = $1;', [memo_id])
   erb :show_memo
 end
 
 post '/memos' do
-  memo_id = new_memo_id
-  json_data = read_json_file
-  new_memo = { 'id' => memo_id, 'title' => params[:title], 'content' => params[:content] }
-  json_data << new_memo
-  write_json_file(json_data)
+  connection.exec('insert into memos(memo_id, title, content) values ($1,$2,$3);',
+                  [new_memo_id, params[:title], params[:content]])
   redirect '/memos'
 end
 
 get '/memos/:memo_id/edit' do
-  json_data = read_json_file
-  memo_id = params[:memo_id].to_i
-  @found_memo = json_data.find { |data| data['id'] == memo_id }
-  pass unless @found_memo
+  memo_id = params[:memo_id]
+  @memos = connection.exec_params('select * from memos where memo_id = $1;', [memo_id])
   erb :edit_memo
 end
 
 patch '/memos/:memo_id' do
-  memo_id = params[:memo_id].to_i
-  json_data = read_json_file
-  found_memo = json_data.find { |data| data['id'] == memo_id }
-  found_memo['title'] = params[:title]
-  found_memo['content'] = params[:content]
-  write_json_file(json_data)
+  memo_id = params[:memo_id]
+  connection.exec_params('update memos set title = $1, content = $2 where memo_id = $3;',
+                         [params[:title], params[:content], memo_id])
   redirect '/memos'
 end
 
 delete '/memos/:memo_id' do
-  memo_id = params[:memo_id].to_i
-  json_data = read_json_file
-  json_data.delete_if { |data| data['id'] == memo_id }
-  write_json_file(json_data)
+  memo_id = params[:memo_id]
+  connection.exec_params('delete from memos where memo_id = $1;', [memo_id])
   redirect '/memos'
 end
