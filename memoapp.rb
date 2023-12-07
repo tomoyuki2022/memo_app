@@ -33,9 +33,7 @@ end
 get '/memos/:memo_id' do
   memo_id = params[:memo_id]
   memos = connection.exec_params('select * from memos where memo_id = $1;', [memo_id])
-  @memo_id = memos.getvalue(0, 0)
-  @title = memos.getvalue(0, 1)
-  @content = memos.getvalue(0, 2)
+  @memo = memos[0]
   erb :show_memo
 end
 
@@ -48,9 +46,7 @@ end
 get '/memos/:memo_id/edit' do
   memo_id = params[:memo_id]
   memos = connection.exec_params('select * from memos where memo_id = $1;', [memo_id])
-  @memo_id = memos.getvalue(0, 0)
-  @title = memos.getvalue(0, 1)
-  @content = memos.getvalue(0, 2)
+  @memo = memos[0]
   erb :edit_memo
 end
 
